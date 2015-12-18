@@ -1,0 +1,7 @@
+#!/bin/sh
+
+HOST='http://admin:admin@192.168.0.83:8086/write?db=temperature'
+
+PAYLOAD="temperature,room=livingroom value=$(pcsensor -m | sed -n 1p) $(date +%s)000000000"
+
+curl -XPOST $HOST --data-binary "$PAYLOAD"
